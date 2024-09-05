@@ -1,9 +1,10 @@
 import { Button } from '@mui/material';
 import { useState, useEffect } from 'react';
 
-function TimerButton() {
+function TimerButton({ name }) {
     const [timer, setTimer] = useState(10 * 60); // 10 minutes in seconds
     const [isRunning, setIsRunning] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
 
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
@@ -17,6 +18,14 @@ function TimerButton() {
 
     const toggleTimer = () => {
         setIsRunning((prevIsRunning) => !prevIsRunning);
+    };
+
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
     };
 
     useEffect(() => {
@@ -39,8 +48,16 @@ function TimerButton() {
     }, [timer]);
 
     return (
-        <Button variant="outlined" color="white" className="Button" onClick={toggleTimer}>
-            {formatTime(timer)}
+        <Button
+            variant="contained"
+            color="primary"
+            className="Button"
+            onClick={toggleTimer}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            style={{ width: '200px' }}
+        >
+            {isHovered ? formatTime(timer) : name}
         </Button>
     );
 }
