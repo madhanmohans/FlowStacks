@@ -7,7 +7,7 @@ const Stack = ({ name, timeInMinutes }) => {
   const { toggleTimer, timer, progressValue } = useTimer(timeInMinutes);
 
   return (
-    <div>
+    <div className="Stack">
       <div className="Timer-progress-bar">
         <TimerProgressBar toggleTimer={toggleTimer} progressValue={progressValue} />
       </div>

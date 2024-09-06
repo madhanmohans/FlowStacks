@@ -5,7 +5,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #3168d5;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,15 +18,13 @@
   text-align: center;
   display: flex;
   justify-content: center; 
+  flex-direction: column;
 }
 
 .Button {
-  background-color: #282c34;
-  color: white;
   border: none;
   padding: 10px 20px;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
@@ -37,7 +35,19 @@
   height: 40px;
 }
 
-.Timer-progress-bar, .Timer-button {
-  position: fixed;
+.Stack {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Timer-progress-bar {
+  position: relative;
+}
+
+.Timer-button {
+  position: absolute;
   z-index: 1;
 }
