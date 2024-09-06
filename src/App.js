@@ -8,7 +8,7 @@ function App() {
         <h1>FlowStacks</h1>
       </header>
       <div className="App-body">
-        <Stack name="Drink Water" timeInMinutes={1} />
+        <Stack name="Drink Water" timeInMinutes={0.1} />
       </div>
     </div>
   );

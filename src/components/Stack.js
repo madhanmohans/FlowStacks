@@ -4,12 +4,12 @@ import TimerButton from "./TimerButton";
 import useTimer from "../hooks/useTimer";
 
 const Stack = ({ name, timeInMinutes }) => {
-  const { toggleTimer, timer } = useTimer(timeInMinutes);
+  const { toggleTimer, timer, progressValue } = useTimer(timeInMinutes);
 
   return (
     <div>
       <div className="Timer-progress-bar">
-        <TimerProgressBar value={timeInMinutes} />
+        <TimerProgressBar toggleTimer={toggleTimer} progressValue={progressValue} />
       </div>
       <div className="Timer-button">
         <TimerButton name={name} toggleTimer={toggleTimer} timer={timer} />
