@@ -9,9 +9,11 @@ function App() {
         <h1>FlowStacks</h1>
       </header>
       <div className='App-body'>
-        <TimerButton name="Drink Water"/>
-        <div style={{display: 'flex', justifyContent: 'center'}}>
+        <div className='Timer-progress-bar'>
           <TimerProgressBar value={40}/>        
+        </div>
+        <div className='Timer-button'> 
+          <TimerButton name="Drink Water"/>
         </div>
       </div>
     </div>

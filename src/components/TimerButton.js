@@ -50,12 +50,12 @@ function TimerButton({ name }) {
     return (
         <Button
             variant="contained"
-            color="primary"
+            color="white"
             className="Button"
             onClick={toggleTimer}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            style={{ width: '200px' }}
+            style={{ width: '200px', height: '40px' }}
         >
             {isHovered ? formatTime(timer) : name}
         </Button>
