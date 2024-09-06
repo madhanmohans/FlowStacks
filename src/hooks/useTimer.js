@@ -4,16 +4,30 @@ const useTimer = (timeInMinutes) => {
   const [timer, setTimer] = useState(timeInMinutes * 60);
   const [isRunning, setIsRunning] = useState(false);
   const [progressValue, setProgressValue] = useState(100);
+  const [reductionPerSec, setReductionPerSec] = useState(
+    100 / (timeInMinutes * 60)
+  );
 
   const toggleTimer = () => {
     setIsRunning((prevIsRunning) => !prevIsRunning);
   };
 
+  const handleIncrement = () => {
+    setTimer((prevTimer) => prevTimer + 1);
+    setReductionPerSec(100 / (timer + 1));
+    if(isRunning && progressValue < 100) 
+      setProgressValue((prevValue) => prevValue + reductionPerSec);
+  };
+
+  const handleDecrement = () => {
+    setTimer((prevTimer) => prevTimer - 1);
+    setReductionPerSec(100 / (timer - 1));
+    setProgressValue((prevValue) => prevValue - reductionPerSec);
+  };
+
   useEffect(() => {
     let interval;
     if (isRunning) {
-      var timeInSec = timeInMinutes * 60;
-      var reductionPerSec = 100 / timeInSec;
       interval = setInterval(() => {
         setTimer((prevTimer) => prevTimer - 1);
         setProgressValue((prevValue) => prevValue - reductionPerSec);
@@ -35,7 +49,9 @@ const useTimer = (timeInMinutes) => {
   return {
     toggleTimer,
     timer,
-    progressValue
+    progressValue,
+    handleIncrement,
+    handleDecrement
   };
 };
 
