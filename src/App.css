@@ -32,6 +32,11 @@
   cursor: pointer;
 }
 
+.Button, .Timer-progress-bar {
+  width: 200px; 
+  height: 40px;
+}
+
 .Timer-progress-bar, .Timer-button {
   position: fixed;
   z-index: 1;

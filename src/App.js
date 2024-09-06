@@ -1,6 +1,5 @@
-import './App.css';
-import TimerProgressBar from './components/TimerProgressBar';
-import TimerButton from './components/TimerButton';
+import "./App.css";
+import Stack from "./components/Stack";
 
 function App() {
   return (
@@ -8,13 +7,8 @@ function App() {
       <header className="App-header">
         <h1>FlowStacks</h1>
       </header>
-      <div className='App-body'>
-        <div className='Timer-progress-bar'>
-          <TimerProgressBar value={40}/>        
-        </div>
-        <div className='Timer-button'> 
-          <TimerButton name="Drink Water"/>
-        </div>
+      <div className="App-body">
+        <Stack name="Drink Water" timeInMinutes={1} />
       </div>
     </div>
   );
