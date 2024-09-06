@@ -1,5 +1,5 @@
 import './App.css';
-
+import TimerProgressBar from './components/TimerProgressBar';
 import TimerButton from './components/TimerButton';
 
 function App() {
@@ -10,6 +10,9 @@ function App() {
       </header>
       <div className='App-body'>
         <TimerButton name="Drink Water"/>
+        <div style={{display: 'flex', justifyContent: 'center'}}>
+          <TimerProgressBar value={40}/>        
+        </div>
       </div>
     </div>
   );
