@@ -10,7 +10,7 @@ const Stack = ({ name, timeInMinutes }) => {
   return (
     <div className="Stack">
       {timer > 0 ? (
-        <Button className="inc-dec-buttons" onClick={handleDecrement}>
+        <Button className="inc-dec-buttons" color="error" onClick={handleDecrement}>
           -
         </Button>
       ) : (
@@ -27,7 +27,7 @@ const Stack = ({ name, timeInMinutes }) => {
       <div className="Timer-button">
         <TimerButton name={name} toggleTimer={toggleTimer} timer={timer} />
       </div>
-      <Button className="inc-dec-buttons" onClick={handleIncrement}>
+      <Button disableElevation color="success" href="inc-dec-buttons" onClick={handleIncrement}>
         +
       </Button>
     </div>

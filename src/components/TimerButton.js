@@ -20,7 +20,7 @@ function TimerButton({ name, toggleTimer, timer}) {
 
   return (
     <Button
-      variant="contained"
+      disableElevation
       color="white"
       className="Button"
       onClick={toggleTimer}

@@ -5,7 +5,7 @@
 }
 
 .App-header {
-  background-color: #3168d5;
+  background-color: #1e293b;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,11 +36,12 @@
 }
 
 .Stack {
+  color: #f8fafc;
   margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  flex-direction: row; 
 }
 
 .Timer-progress-bar {
