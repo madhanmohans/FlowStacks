@@ -15,14 +15,13 @@ const useTimer = (timeInMinutes) => {
   const handleIncrement = () => {
     setTimer((prevTimer) => prevTimer + 1);
     setReductionPerSec(100 / (timer + 1));
-    if(isRunning && progressValue < 100) 
-      setProgressValue((prevValue) => prevValue + reductionPerSec);
+    setProgressValue((prevValue) => prevValue + reductionPerSec > 100 ? 100 : prevValue + reductionPerSec);
   };
 
   const handleDecrement = () => {
     setTimer((prevTimer) => prevTimer - 1);
     setReductionPerSec(100 / (timer - 1));
-    setProgressValue((prevValue) => prevValue - reductionPerSec);
+    setProgressValue((prevValue) => prevValue - reductionPerSec < 0 ? prevValue : prevValue - reductionPerSec);
   };
 
   useEffect(() => {
