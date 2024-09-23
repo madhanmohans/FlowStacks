@@ -1,49 +1,56 @@
 import { useState, useEffect } from "react";
 
 const useTimer = (timeInMinutes) => {
-  const [timer, setTimer] = useState(timeInMinutes * 60);
+  const initialTime = timeInMinutes * 60;
+  const [timer, setTimer] = useState(initialTime);
   const [isRunning, setIsRunning] = useState(false);
   const [progressValue, setProgressValue] = useState(100);
-  const [reductionPerSec, setReductionPerSec] = useState(
-    100 / (timeInMinutes * 60)
-  );
+  const [reductionPerSec, setReductionPerSec] = useState(100 / initialTime);
 
   const toggleTimer = () => {
     setIsRunning((prevIsRunning) => !prevIsRunning);
   };
 
   const handleIncrement = () => {
-    setTimer((prevTimer) => prevTimer + 1);
-    setReductionPerSec(100 / (timer + 1));
-    setProgressValue((prevValue) => prevValue + reductionPerSec > 100 ? 100 : prevValue + reductionPerSec);
+    setTimer((prevTimer) => {
+      const newTimer = prevTimer + 1;
+      return newTimer;
+    });
   };
 
   const handleDecrement = () => {
-    setTimer((prevTimer) => prevTimer - 1);
-    setReductionPerSec(100 / (timer - 1));
-    setProgressValue((prevValue) => prevValue - reductionPerSec < 0 ? prevValue : prevValue - reductionPerSec);
+    setTimer((prevTimer) => {
+      const newTimer = prevTimer > 1 ? prevTimer - 1 : 1;
+      return newTimer;
+    });
   };
 
   useEffect(() => {
+    if (timer > 0) {
+      const newProgressValue = (timer / initialTime) * 100 > 100 ? 100 : (timer / initialTime) * 100;
+      setReductionPerSec(100 / timer);
+      setProgressValue(newProgressValue);
+      console.log("progressValue", progressValue);
+      console.log("reductionPerSec", reductionPerSec);
+    } else {
+      setIsRunning(false);
+      setProgressValue(0);
+    }
+  }, [timer, initialTime]);
+
+  // Update the timer and progress value every second when running
+  useEffect(() => {
     let interval;
-    if (isRunning) {
+    if (isRunning && timer > 0) {
       interval = setInterval(() => {
         setTimer((prevTimer) => prevTimer - 1);
-        setProgressValue((prevValue) => prevValue - reductionPerSec);
       }, 1000);
+    } else if (timer <= 0) {
+      setIsRunning(false); // Stop the timer when it reaches 0
     }
-    return () => {
-      clearInterval(interval);
-    };
-  }, [isRunning]);
 
-  useEffect(() => {
-    if (timer === -1) {
-      setIsRunning(false);
-      setTimer(timeInMinutes * 60);
-      setProgressValue(100);
-    }
-  }, [timer]);
+    return () => clearInterval(interval);
+  }, [isRunning, timer]);
 
   return {
     toggleTimer,
